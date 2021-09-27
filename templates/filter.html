@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>{% endblock %}
+
+{% block body %}
+
+{% raw %}
+<div ng-app="prods" ng-controller="ProductsController">
+<div class="row">
+    <div class="nofilters"><a class="showfilters" ng-click="showfilters=true">Filter by Category</a></div>
+    <div class="filters ng-cloak" ng-show="showfilters">
+            <div ng-repeat="category in prods.categories" ng-click="toggleFilter(category)" class="pill" ng-class="(prods.filters.indexOf(category) != -1) ? 'on' : 'off'">{{ category}}</div>
+        <a class="hidefilters" ng-click="showfilters=false">Hide Filters</a>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 proddiv" ng-repeat="product in prods.filtered_prods">
+        <div class="prodimage">
+        <a href="/products/{{ product.id }}"><img ng-src="{{product.img}}"></a>
+        <h2 class="imageqty hidden">+</h2>
+        </div>
+        <h4>{{ product.name }}</h4>
+        <div class="proddetails"><p>{{ product.price | currency }} <span class="spacerbull">&bull;</span> {{ product.weight }} {{ product.unit }}</div>
+        <!-- <div class="col-xs-6"><p>Price: {{ product.price | currency }}</p></div> -->
+        <button type="button" class="add_to_cart prod_page btn btn-default" ng-click="addToCart(product.id)">Add to Cart</button>
+    </div>
+
+
+<script type="text/javascript" src="static/js/cart.js"></script>
+
+</div>
+
+<script type="text/javascript" src="static/js/products.js"></script>
+
+</div>
+
+{% endraw %}
+{% endblock %}

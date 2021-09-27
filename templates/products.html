@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<!-- <div class="row">
+    <div class="nofilters"><a class="showfilters">Filter by Category</a></div>
+    <div class="filters hidden">
+        {% for category in categories %}
+            <div><a href="/products?filter={{category[0]}}" data-cat="{{ category[0] }}" class="category">{{ category[0] }}</a></div>
+        {% endfor %}
+        <a class="hidefilters">Hide Filters</a>
+    </div>
+</div> -->
+
+{% if products %}
+
+<div class="row">
+
+{% for product in products %}
+
+{# {% if loop.first or loop.index0 is divisibleby(3) %} #}
+
+<!-- <div class="row"> -->
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 proddiv">
+        <a href="/products/{{ product.product_id }}"><img src="{{ product.img }}"></a>
+        <h2 class="imageqty hidden">+</h2>
+        <h4>{{ product.name }}</h4>
+        <div class="proddetails"><p>${{ product.price }} <span class="spacerbull">&bull;</span> {{ product.weight }} {{ product.unit }}</div>
+        <button type="button" class="add_to_cart prod_page btn btn-default" id="{{ product.product_id }}">Add to Cart</button>
+    </div>
+
+{# {% elif loop.index0 % 3 == 1 %} #}
+
+<!--     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+        <img src="{{product.img}}">
+        <p>{{product.name}}</p>
+        <p>Price: {{product.price}}</p>
+    </div> -->
+
+{# {% else %} #}
+
+<!--     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+        <img src="{{product.img}}">
+        <p>{{product.name}}</p>
+        <p>Price: {{product.price}}</p>
+    </div> -->
+
+<!-- </div> -->
+
+{# {% endif %} #}
+
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<h2>Sorry, we couldn't find what you were looking for.</h2>
+
+{% endif %}
+
+<script type="text/javascript" src="static/js/cart.js"></script>
+
+<div class="row">
+    <a href="/products" class="backtoall">Back to All Products</a>
+</div>
+
+{% endblock %}
