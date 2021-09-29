@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deployment
+  name: db-deployment
   namespace: jxu
   labels:
-    app: app
+    app: db
 spec:
   replicas: 1
   strategy:
@@ -12,17 +12,17 @@ spec:
   minReadySeconds: 20
   selector:
     matchLabels:
-      app: app
+      app: db
   template:
     metadata:
       labels:
-        app: app
+        app: db
     spec:
       containers:
-      - name: app-deployment
-        image: harbor.dev.afsmtddso.com/jxu-devsecops/lab@sha256:744554256c395e0dc75742f10d722a6f08da229361d01ca430a649a5bb00b485
+      - name: db-deployment
+        image: harbor.dev.afsmtddso.com/jxu-devsecops/db@sha256:40ccab218bc8b69adcacecf8280e1e4a045c52a630bfa841e2e591df13eee50a 
         ports:
-        - containerPort: 5000
+        - containerPort: 5432
         envFrom:
         - secretRef:
             name: db-secret
