@@ -26,4 +26,6 @@ spec:
         envFrom:
         - secretRef:
             name: db-secret
+        - configMapRef:
+            name: feature-toggle
 
