@@ -118,12 +118,13 @@
 		<small>Please log in before placing your order. Not a member? <a href="/register">Register now!</a></small> 
 		</form>
 	{% endraw %}
-{% endif %}
         <br><label>Order Total: {{ deliveryForm.delivery==="delivery" ? cartPrice + 5 : cartPrice | currency }}</label><br>
         <input type="submit" class="btn btn-default checkout" value="Check Out"><br><br>
         <small>Please log in before placing your order. Not a member? <a href="/register">Register now!</a></small>
         </form>
 {% endraw %}
+{% endif %}
+
 </div>
 
 </div>
