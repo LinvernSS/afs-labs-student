@@ -23,7 +23,7 @@ spec:
         image: harbor.dev.afsmtddso.com/jxu-devsecops/lab@sha256:744554256c395e0dc75742f10d722a6f08da229361d01ca430a649a5bb00b485
         ports:
         - containerPort: 5000
-      envFrom:
+        envFrom:
         - secretRef:
             name: db-secret
         - configMapRef:
