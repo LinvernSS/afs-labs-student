@@ -4,4 +4,4 @@ metadata:
   name: feature-toggle
   namespace: jxu
 data:
-  LOCATION_FEATURE_ENABLED: "False"
+  LOCATION_FEATURE_ENABLED: "True"
