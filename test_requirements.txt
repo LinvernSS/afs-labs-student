@@ -1,0 +1,5 @@
+arrow==0.8.0
+Flask==2.00
+Flask-SQLAlchemy==2.5.1
+SQLAlchemy-Utils==0.37.8
+stripe==1.41.1
