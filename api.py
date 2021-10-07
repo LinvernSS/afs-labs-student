@@ -91,7 +91,7 @@ def pay_for_cart():
 
     print("token is ", token)
 
-    stripe.api_key = environ["STRIPE_TEST_SECRET"]
+    stripe.api_key = 'pk_test_TYooMQauvdEDq54NiTphI7jx'
 
     try:
         stripe.Charge.create(amount=int(session["cart_total"] * 100),

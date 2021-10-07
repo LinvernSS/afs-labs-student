@@ -197,7 +197,7 @@ def add_product_to_cart(product_id):
     session["cart"][str(product_id)] = session["cart"].get(product_id, 0) + 1
 
     cart = session["cart"]
-    print(cart + "test")
+    print(str((cart) + "test"))
 
     return redirect('/products/' + str(product_id))
 
