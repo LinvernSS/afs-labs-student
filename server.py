@@ -8,6 +8,8 @@ import os
 
 app = Flask(__name__)
 
+# comment to trigger build
+
 # Required to use Flask sessions, Debug toolbar
 app.secret_key = "daksfhausdfskgbxpuseswlduc"
 
