@@ -1,21 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: <NAME>
+  namespace: <YOUR NAMESPACE>
   labels:
-    app: nginx
+    app: <APP>
 spec:
-  replicas: 3
+  replicas: <REPLICAS>
+  strategy:
+    type: Recreate
+  minReadySeconds: 20
   selector:
     matchLabels:
-      app: nginx
+      app: <APP>
   template:
     metadata:
       labels:
-        app: nginx
+        app: <APP>
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
+      - envFrom:
+        - secretRef:
+            name: db-secret
+        name: <NAME>
+        image: <IMAGE URL>
         ports:
-        - containerPort: 80
+        - containerPort: <CONTAINER PORT>
