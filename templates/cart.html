@@ -46,7 +46,7 @@
 </div>
 
 <div class="col-md-5">
-
+    {% if flag=="True" %}
     <h2>Delivery Options</h2>
 {% raw %}
     <form name="deliveryOptions" ng-controller="FormController as formCtrl" ng-submit="deliveryOptions.$valid && validateDelivery()" novalidate>
@@ -90,6 +90,37 @@
         <small>Please log in before placing your order. Not a member? <a href="/register">Register now!</a></small>
         </form>
 {% endraw %}
+{% else %}
+	{% raw %}
+	    <form name="deliveryOptions" ng-controller="FormController as formCtrl" ng-submit="deliveryOptions.$valid && validateDelivery()" novalidate>
+        <label>Delivery is a flat $5 fee</label><br>
+        <div>
+          <div ng-if="customer.street_address">
+              <input type="radio" name="which_address" value="my_address" ng-model="deliveryForm.which_address">Use the address I have on file:<br>
+              <p>{{ customer.street_address }}<br>
+              {{ customer.zipcode }} {{ customer.state }}</p>
+              <input type="radio" name="which_address" value="new_address" ng-model="deliveryForm.which_address">Enter new address<br>
+              <div ng-switch="deliveryForm.which_address">
+            <div ng-switch-when="new_address">
+                <input type="text" name="address" ng-model="deliveryForm.address" placeholder="80 Market St"><br>
+                <input type="text" name="zipcode" ng-model="deliveryForm.zipcode" placeholder="94105">
+                <input type="text" name="state" ng-model="deliveryForm.state" placeholder="CA" maxlength="2" size="2"><br>
+            </div>
+              </div>
+          </div>
+          <div ng-if="!customer.street_address">
+          <label>Add Delivery Address</label><br>
+          <input type="text" name="address" ng-model="deliveryForm.address" placeholder="80 Market St"><br>
+          <input type="text" name="zipcode" ng-model="deliveryForm.zipcode" placeholder="94105">
+          <input type="text" name="state" ng-model="deliveryForm.state" placeholder="CA" maxlength="2" size="2"><br>
+          </div>
+        </div>
+        <br><label>Order Total: {{ deliveryForm.delivery==="delivery" ? cartPrice + 5 : cartPrice | currency }}</label><br>
+        <input type="submit" class="btn btn-default checkout" value="Check Out"><br><br>
+        <small>Please log in before placing your order. Not a member? <a href="/register">Register now!</a></small> 
+        </form>
+	{% endraw %}
+{% endif %}
 </div>
 
 </div>
