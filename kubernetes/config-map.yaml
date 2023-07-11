@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: feature-toggle
+  namespace: rrice
+data:
+  LOCATION_FEATURE_ENABLED: "False"
